@@ -1,0 +1,23 @@
+def validate_credit_card(card_number):
+    card_number = card_number.replace(" ", "")[::-1]
+    
+    if not card_number.isdigit():
+        return False
+
+
+    total = 0
+    for i, digit in enumerate(card_number):
+        digit = int(digit)
+        if i % 2 == 1:
+            digit *= 2
+            if digit > 9:
+                digit -= 9
+        total += digit
+
+    return total % 10 == 0
+
+card_number = input("Введіть номер кредитної картки: ")
+if validate_credit_card(card_number):
+    print("Номер кредитної картки є дійсним.")
+else:
+    print("Номер кредитної картки не є дійсним.")
